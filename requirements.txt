@@ -1,0 +1,2 @@
+apache-airflow-providers-github
+# Add more provider packages as needed
