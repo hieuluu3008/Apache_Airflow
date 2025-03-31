@@ -1,0 +1,36 @@
+# Airflow Operators
+Represent a single task in workflow
+Run independently
+
+# Airflow Executors
+Chịu trách nhiệm thực thi các task trong DAG. Các loại Executors:
+1. Sequential Executor
+    Thực thi các task 1 cách tuần tự (không có hai task chạy song song)
+    + Ưu điểm: Thiết lập đơn giản nhất và ít yêu cầu tài nguyên. Phù hợp cho các DAG rất nhỏ hoặc khi phát triển và kiểm thử.
+    + Nhược điểm: Không hỗ trợ xử lý song song, vì vậy rất chậm và không phù hợp với môi trường sản xuất.
+
+2. Local Executor
+    Cho phép thực hiện nhiều task cùng lúc tùy theo cấu hình của hệ thống
+    + Ưu điểm: Cấu hình dễ dàng và nhanh chóng, phù hợp cho các dự án nhỏ hoặc khi bạn muốn thử nghiệm các pipeline.
+    + Nhược điểm: Khả năng mở rộng hạn chế, vì chỉ có thể thực hiện trên một máy chủ
+    duy nhất.
+
+3. Kubernetes Executor (khi triển khai trên nền tảng Kubernetes)
+    Cho phép tạo các Pod riêng lẻ để thực hiện từng task, và sau khi hoàn thành, các Pod này sẽ được giải phóng để tiết kiệm tài nguyên.
+    + Ưu điểm:
+    Mở rộng quy mô tốt, tận dụng tối đa các lợi ích của Kubernetes như tự động mở rộng (auto-scaling), quản lý tài nguyên, và phân phối công việc.
+    Các task được cô lập trong từng Pod, đảm bảo tính độc lập và bảo mật.
+    + Nhược điểm:
+    Yêu cầu kiến thức chuyên sâu về Kubernetes và cấu hình phức tạp.
+    Có thể tốn chi phí vận hành cao nếu không quản lý tài nguyên hiệu quả.
+
+4. Celery Executor
+    Khi triển khai ở môi trường sản xuất có yêu cầu cao về xử lý song song. Sử dụng Celery cùng với các hàng đợi (queue) và các worker để phân tán các task trên nhiều máy chủ
+    + Ưu điểm:
+    Có thể mở rộng quy mô dễ dàng bằng cách thêm nhiều worker.
+    Hỗ trợ xử lý song song, giúp tối ưu hóa thời gian chạy DAG.
+    Có khả năng quản lý thất bại của task và có thể cấu hình để chạy lại tự động.
+    + Nhược điểm:
+    Cần thiết lập thêm dịch vụ hàng đợi như RabbitMQ hoặc Redis để giao tiếp giữa các thành phần, điều này có thể phức tạp.
+    Việc theo dõi và xử lý lỗi có thể phức tạp hơn so với Local Executor.
+
