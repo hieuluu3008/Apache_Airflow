@@ -41,33 +41,33 @@ sheet = client.open_by_key(spreadsheets_id)
 sheet_name = 'name' # Input the spreadsheets_name
 worksheet = sheet.worksheet(sheet_name)
 
-# class Gsheet_working:
-#     def __init__(spreadsheet_key, sheet_name, json_file):
-#         spreadsheet_key = spreadsheet_key
-#         sheet_name = sheet_name
-#         gc = pygsheets.authorize(service_file=json_file)
-#         sh = gc.open_by_key(spreadsheet_key)
-#         wks = sh.worksheet_by_title(sheet_name)
+class Gsheet_working:
+    def __init__(spreadsheet_key, sheet_name, json_file):
+        spreadsheet_key = spreadsheet_key
+        sheet_name = sheet_name
+        gc = pygsheets.authorize(service_file=json_file)
+        sh = gc.open_by_key(spreadsheet_key)
+        wks = sh.worksheet_by_title(sheet_name)
 
 
-#     def Update_dataframe(dataframe, row_num, col_num, clear_sheet=True, copy_head=True,empty_value=''):
-#         wks = wks
-#         sheet_name = sheet_name
-#         if clear_sheet:
-#             print('clear all data in %s'%sheet_name)
-#             wks.clear()
-#         else:
-#             pass
+    def Update_dataframe(dataframe, row_num, col_num, clear_sheet=True, copy_head=True,empty_value=''):
+        wks = wks
+        sheet_name = sheet_name
+        if clear_sheet:
+            print('clear all data in %s'%sheet_name)
+            wks.clear()
+        else:
+            pass
 
 
-#         total_rows = int(len(dataframe))
-#         print('Start upload data to %s' % sheet_name)
-#         if len(dataframe) >= 1:
-#             dataframe.fillna('', inplace=True)
-#             wks.set_dataframe(dataframe, (row_num, col_num), copy_head=copy_head,nan=empty_value)
-#             print('Upload successful {} lines'.format(len(dataframe)))
-#         else:
-#             print('%s not contain value. Check again' % sheet_name)
+        total_rows = int(len(dataframe))
+        print('Start upload data to %s' % sheet_name)
+        if len(dataframe) >= 1:
+            dataframe.fillna('', inplace=True)
+            wks.set_dataframe(dataframe, (row_num, col_num), copy_head=copy_head,nan=empty_value)
+            print('Upload successful {} lines'.format(len(dataframe)))
+        else:
+            print('%s not contain value. Check again' % sheet_name)
 
 
 script = '''Input SQL Query'''

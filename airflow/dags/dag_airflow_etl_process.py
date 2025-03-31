@@ -27,10 +27,10 @@ os.chdir(main_cwd) # change current working directory to the modified path
 sys.path.append(main_cwd) # add the modified path to system path
 
 # set-up connect credentials
-host = 'localhost'
-name = 'postgres'
-passwd = 'matkhau2908'
-db = 'postgres'
+host = ''
+name = ''
+passwd = ''
+db = ''
 
 # set-up dag info
 dag_id = 'dag_airflow_etl'
